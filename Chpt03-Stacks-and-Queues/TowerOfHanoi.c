@@ -13,6 +13,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 struct stack {
 	int *array;
@@ -67,17 +68,31 @@ int stack_peek(struct stack *st) {
 	return st->array[st->index-1];
 }
 
+void TowerOfHanoi(struct stack *main, struct stack *buffer, struct stack *target, int max) {
+	if (stack_isEmpty(main))
+		return;
+
+	int current = stack_pop(main);
+
+}
+
 int main(void) {
-	struct stack *src = stack_init();
+	struct stack *main = stack_init();
+	struct stack *target = stack_init();
+	struct stack *buffer = stack_init();
 
-	stack_push(src, 4);
-	stack_push(src, 3);
-	stack_push(src, 2);
-	stack_push(src, 1);
-	stack_push(src, 5);
+	stack_push(main, 4);
+	stack_push(main, 3);
+	stack_push(main, 2);
+	stack_push(main, 1);
 
-	stack_print(src);
-	stack_pop(src);
+	printf("main: ");
+	stack_print(main);
+	printf("buffer: ");
+	stack_print(buffer);
+	printf("target: ");
+	stack_print(target);
 
-	stack_print(src);
+	TowerOfHanoi(main, buffer, target, INT_MAX);
+
 }
